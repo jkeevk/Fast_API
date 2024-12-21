@@ -23,7 +23,7 @@ class User(Base):
     __tablename__ = "user"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    name: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
     password: Mapped[str] = mapped_column(String(100), nullable=False)
     registration_time: Mapped[datetime.datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
@@ -34,7 +34,7 @@ class User(Base):
     def dict(self):
         return {
             "id": self.id,
-            "email": self.email,
+            "name": self.name,
             "registration_time": self.registration_time.isoformat(),
         }
 
@@ -51,7 +51,7 @@ class Advert(Base):
         DateTime(timezone=True), server_default=func.now()
     )
     author_id: Mapped[int] = mapped_column(Integer, ForeignKey('user.id', ondelete="CASCADE"), nullable=False)
-    author = relationship("User", back_populates="adverts")
+    author = relationship("User", back_populates="adverts",lazy= "joined")
 
     @property
     def dict(self):
@@ -62,11 +62,11 @@ class Advert(Base):
             "price": self.price,
             "created_at": self.created_at.isoformat(),
             "author_id": self.author_id,
-            "author_email": self.author.email,
+            "author_name": self.author.name,
         }
 
-ORM_OBJ = Advert
-ORM_CLS = type[Advert]
+ADVERT_OBJ = Advert
+ADVERT_CLS = type[Advert]
 USER_OBJ = User
 USER_CLS = type[User]
 

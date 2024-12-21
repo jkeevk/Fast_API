@@ -18,7 +18,7 @@ class GetAdvertisementResponse(BaseModel):
     price: int
     created_at: datetime.datetime
     author_id: int
-    author_email: str
+    author_name: str
 
 
 class CreateAdvertisementRequest(BaseModel):
@@ -48,9 +48,27 @@ class DeleteAdvertisementResponse(StatusResponse):
 
 
 class CreateUserRequest(BaseModel):
-    email: str
+    name: str
     password: str
 
 
 class CreateUserResponse(IdResponseBase):
+    pass
+
+
+
+class GetUserResponse(BaseModel):
+    id: int
+    name: str
+    registration_time: datetime.datetime
+
+
+class UpdateUserRequest(BaseModel):
+    name: str | None = None
+    password: str | None = None
+
+class UpdateUserResponse(IdResponseBase):
+    pass
+
+class DeleteUserResponse(StatusResponse):
     pass
