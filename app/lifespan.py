@@ -10,3 +10,4 @@ async def lifespan(app: FastAPI):
     yield
     print('STOP')
     await close_orm()
+    

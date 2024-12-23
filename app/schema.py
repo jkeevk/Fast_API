@@ -33,9 +33,9 @@ class CreateAdvertisementResponse(IdResponseBase):
 
 
 class UpdateAdvertisementRequest(BaseModel):
-    title: str | None = None 
-    description: str | None = None 
-    price: int | None = None 
+    title: str | None = None
+    description: str | None = None
+    price: int | None = None
 
 
 class UpdateAdvertisementResponse(IdResponseBase):
@@ -46,7 +46,6 @@ class DeleteAdvertisementResponse(StatusResponse):
     pass
 
 
-
 class CreateUserRequest(BaseModel):
     name: str
     password: str
@@ -54,7 +53,6 @@ class CreateUserRequest(BaseModel):
 
 class CreateUserResponse(IdResponseBase):
     pass
-
 
 
 class GetUserResponse(BaseModel):
@@ -67,8 +65,10 @@ class UpdateUserRequest(BaseModel):
     name: str | None = None
     password: str | None = None
 
+
 class UpdateUserResponse(IdResponseBase):
     pass
+
 
 class DeleteUserResponse(StatusResponse):
     pass
